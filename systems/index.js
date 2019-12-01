@@ -27,6 +27,7 @@ public.route({
     for (var n = 0; n < applications.length; n++) {
       if (applications[n].name == target) {
         applications[n].online = true;
+        applications[n].timer = 20
         ctx.status = 200;
         return;
       }
@@ -37,9 +38,14 @@ public.route({
 
 setInterval(function () {
   for (var i = 0; i < applications.length; i++) {
-    applications[i].online = false;
+    if (applications[i].timer > 0) {
+      applications[i].timer -= 1;
+    }
+    if (applications[i].timer == 0) {
+      applications[i].online = false
+    }
   }
-}, 20*1000);
+}, 1*1000);
 
 const app = new koa();
 app.use(public.middleware());
