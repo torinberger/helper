@@ -3,6 +3,7 @@ const applications = require('./targets.json');
 console.log(applications);
 const koa = require('koa');
 const router = require('koa-joi-router');
+const cors = require('@koa/cors');
 const Joi = router.Joi;
 
 const public = router();
@@ -48,5 +49,6 @@ setInterval(function () {
 }, 1*1000);
 
 const app = new koa();
+app.use(cors())
 app.use(public.middleware());
 app.listen(3000);
