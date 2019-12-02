@@ -17,6 +17,7 @@
         width: 100%;
         background: white;
         padding: 1vh;
+        font-size: 2vh;
         height: 4vh;
       }
 
@@ -27,8 +28,31 @@
       .statuses {
         margin: 1vw;
         padding: 1vw;
+        float: left;
         background: white;
         width: 20vw;
+        border-radius: 3px;
+      }
+
+      .errors {
+        margin: 1vw;
+        padding: 1vw;
+        float: left;
+        margin-left: 0;
+        border-radius: 3px;
+        background: white;
+        width: 30vw;
+      }
+
+      .error {
+        font-family: monospace;
+        background: #eeeeee;
+        border: #eeeeee solid 1vh;
+        border-radius: 3px;
+      }
+
+      .error p {
+        margin: 0;
       }
 
       .online {
@@ -52,8 +76,11 @@
       </div>
       <div class="errors">
         <h3>Errors</h3>
-        <div class="status" v-for="error in errors">
-          <p>{{ error.name }} - {{ error.err }}</p>
+        <div class="status" v-for="status in statuses">
+          <p>{{ status.name }} -</p>
+          <div class="error" v-for="error in status.errors">
+            <p>{{ error }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -67,6 +94,16 @@
         },
         created() {
           let self = this
+          axios
+            .get('http://167.172.208.181:3000/status', {
+              'Access-Control-Allow-Origin': '*'
+            })
+            .then((res) => {
+              console.log(res.data);
+              self.statuses = res.data
+            })
+            .catch(console.log)
+
           setInterval(function () {
             axios
               .get('http://167.172.208.181:3000/status', {

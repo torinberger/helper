@@ -37,7 +37,7 @@ public.route({
         applications[n].online = true;
         applications[n].timer = 20
         if (post.err) {
-          applications.errors.push(post.err)
+          applications[n].errors.push(post.err)
         }
         ctx.status = 200;
         return;
