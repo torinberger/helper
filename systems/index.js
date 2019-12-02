@@ -24,7 +24,8 @@ public.route({
   path: '/ping',
   validate: {
     body: {
-      name: Joi.string().max(100)
+      name: Joi.string().max(100),
+      err: Joi.string()
     },
     type: 'json'
   },
