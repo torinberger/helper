@@ -50,6 +50,12 @@
           <p>{{ status.name }} - <span class="online" v-if="status.online">ONLINE</span><span class="offline" v-if="!status.online">OFFLINE</span></p>
         </div>
       </div>
+      <div class="errors">
+        <h3>Errors</h3>
+        <div class="status" v-for="error in errors">
+          <p>{{ error.name }} - {{ error.err }}</p>
+        </div>
+      </div>
     </div>
     <script type="text/javascript">
       var app = new Vue({
