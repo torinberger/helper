@@ -98,7 +98,7 @@
         <div class="status" v-for="status in statuses">
           <p>{{ status.name }} -</p>
           <div class="error" v-for="deployment in status.deploys">
-            <span style="color: green;">•</span><p>{{ deployment }}</p>
+            <p><span style="color: green;">•</span><span>{{ deployment }}</span></p>
           </div>
         </div>
       </div>
