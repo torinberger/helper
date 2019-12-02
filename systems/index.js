@@ -40,6 +40,9 @@ public.route({
         if (post.err) {
           applications[n].errors.push(post.err)
         }
+        if (post.deploy) {
+          applications[n].deploys.push(post.deploy)
+        }
         ctx.status = 200;
         return;
       }

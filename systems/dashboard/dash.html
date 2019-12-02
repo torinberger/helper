@@ -44,6 +44,16 @@
         width: 30vw;
       }
 
+      .deploys {
+        margin: 1vw;
+        padding: 1vw;
+        float: left;
+        margin-left: 0;
+        border-radius: 3px;
+        background: white;
+        width: 30vw;
+      }
+
       .error {
         font-family: monospace;
         background: #eeeeee;
@@ -80,6 +90,15 @@
           <p>{{ status.name }} -</p>
           <div class="error" v-for="error in status.errors">
             <p>{{ error }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="deploys">
+        <h3>Deployments</h3>
+        <div class="status" v-for="status in statuses">
+          <p>{{ status.name }} -</p>
+          <div class="error" v-for="deployment in status.deploys">
+            <span style="color: green;">•</span><p>{{ deployment }}</p>
           </div>
         </div>
       </div>
