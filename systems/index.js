@@ -25,7 +25,8 @@ public.route({
   validate: {
     body: {
       name: Joi.string().max(100),
-      err: Joi.string()
+      err: Joi.string(),
+      deploy: Joi.string()
     },
     type: 'json'
   },
