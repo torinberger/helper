@@ -4,6 +4,7 @@ console.log(applications);
 const koa = require('koa');
 const router = require('koa-joi-router');
 const cors = require('@koa/cors');
+const fs = require('fs');
 const Joi = router.Joi;
 
 const public = router();
@@ -11,6 +12,12 @@ const public = router();
 public.get('/status', async (ctx) => {
   ctx.body = applications;
 });
+
+public.get('/', async (ctx) => {
+  ctx.status = 200
+  let page = fs.readFileSync('./dashboard/dash.html')
+  ctx.body = String(page);
+})
 
 public.route({
   method: 'post',
