@@ -79,7 +79,7 @@
         <h1>Dashboard</h1>
       </div>
       <div class="statuses">
-        <h3>Project Status</h3>
+        <h3>Project Status - CPU: {{ cpu }}</h3>
         <div class="status" v-for="status in statuses">
           <p>{{ status.name }} - <span class="online" v-if="status.online">ONLINE</span><span class="offline" v-if="!status.online">OFFLINE</span></p>
         </div>
@@ -108,7 +108,8 @@
         el: '#app',
         data() {
           return {
-            statuses: []
+            statuses: [],
+            cpu: '?%'
           }
         },
         created() {
@@ -131,6 +132,16 @@
               .then((res) => {
                 console.log(res.data);
                 self.statuses = res.data
+              })
+              .catch(console.log)
+
+            axios
+              .get('http://167.172.208.181:3000/cpu', {
+                'Access-Control-Allow-Origin': '*'
+              })
+              .then((res) => {
+                console.log(res.data);
+                self.cpu = res.data
               })
               .catch(console.log)
           }, 10*1000);
