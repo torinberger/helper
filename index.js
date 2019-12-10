@@ -1,6 +1,16 @@
 
 const applications = require('./targets.json');
 console.log(applications);
+for (var i = 0; i < applications.length; i++) {
+  applications[i] = {
+    "name": applications[i],
+    "online": false,
+    "timer": 0,
+    "errors": [],
+    "deploys": []
+  }
+}
+
 const koa = require('koa');
 const router = require('koa-joi-router');
 const cors = require('@koa/cors');
